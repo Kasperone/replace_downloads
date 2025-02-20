@@ -17,7 +17,7 @@ This is a Python script that demonstrates intercepting HTTP traffic to identify 
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/replace_downloads.git
+git clone https://github.com/Kasperone/replace_downloads.git
 cd replace_downloads
 ```
 
